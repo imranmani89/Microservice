@@ -683,6 +683,16 @@
         "build": {
           "buildTransitive/net8.0/System.Text.Json.targets": {}
         }
+      },
+      "Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.dll": {}
+        }
       }
     }
   },
@@ -1755,11 +1765,17 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Shared/1.0.0": {
+      "type": "project",
+      "path": "../Shared/Shared.csproj",
+      "msbuildProject": "../Shared/Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Microsoft.Extensions.Hosting >= 10.0.8"
+      "Microsoft.Extensions.Hosting >= 10.0.8",
+      "Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1769,11 +1785,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Example Codes\\Microservice\\SMSAPP\\SMSApp.csproj",
+      "projectUniqueName": "D:\\Example Codes\\Microservice\\SMSApp\\SMSApp.csproj",
       "projectName": "SMSApp",
-      "projectPath": "D:\\Example Codes\\Microservice\\SMSAPP\\SMSApp.csproj",
+      "projectPath": "D:\\Example Codes\\Microservice\\SMSApp\\SMSApp.csproj",
       "packagesPath": "C:\\Users\\DEV PC\\.nuget\\packages\\",
-      "outputPath": "D:\\Example Codes\\Microservice\\SMSAPP\\obj\\",
+      "outputPath": "D:\\Example Codes\\Microservice\\SMSApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1794,7 +1810,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Example Codes\\Microservice\\Shared\\Shared.csproj": {
+              "projectPath": "D:\\Example Codes\\Microservice\\Shared\\Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

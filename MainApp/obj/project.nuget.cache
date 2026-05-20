@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OBSm9/NG1QU=",
+  "dgSpecHash": "y+z8b3HQKnA=",
   "success": true,
-  "projectFilePath": "D:\\Example Codes\\Microservice\\MainApp\\MainApp.csproj",
+  "projectFilePath": "d:\\Example Codes\\Microservice\\MainApp\\MainApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DEV PC\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.8\\microsoft.extensions.configuration.10.0.8.nupkg.sha512",
     "C:\\Users\\DEV PC\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.8\\microsoft.extensions.configuration.abstractions.10.0.8.nupkg.sha512",

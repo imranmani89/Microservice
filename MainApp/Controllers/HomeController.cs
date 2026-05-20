@@ -1,9 +1,10 @@
 using System.Data;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RabbitMQ.Client;
-
+using Shared.Models;
 namespace MainApp.Controllers;
 
 [ApiController]
@@ -26,16 +27,62 @@ public class HomeController : ControllerBase
             Password = _config["RabbitMQ:Password"]
         };
 
-        using var connection  = await factory.CreateConnectionAsync();
-        using var  channel = await connection.CreateChannelAsync();
+        var orderList = new List<Order>
+        {
+            new Order
+            {
+                OrderNumber = Guid.NewGuid(),
+                OrderDate = DateTime.Now,
+                OrderedByName = "Imran",
+                OrderByContact = "0123456789",
+                OrderByEmail = "imran@imran.com",
+                TotalAmount = 3000
+            },
+
+            new Order
+            {
+                OrderNumber = Guid.NewGuid(),
+                OrderDate = DateTime.Now,
+                OrderedByName = "Hasan",
+                OrderByContact = "0123456566",
+                OrderByEmail = "hasan@hasan.com",
+                TotalAmount = 360
+            },
+
+            new Order
+            {
+                OrderNumber = Guid.NewGuid(),
+                OrderDate = DateTime.Now,
+                OrderedByName = "Asif",
+                OrderByContact = "012345559",
+                OrderByEmail = "asif@asif.com",
+                TotalAmount = 568
+            },
+            new Order
+            {
+                OrderNumber = Guid.NewGuid(),
+                OrderDate = DateTime.Now,
+                OrderedByName = "Abdullah",
+                OrderByContact = "012852789",
+                OrderByEmail = "ab@ab.com",
+                TotalAmount = 200
+            }
+        };
+
+        using var connection = await factory.CreateConnectionAsync();
+        using var channel = await connection.CreateChannelAsync();
 
         await channel.QueueDeclareAsync(queue: "EmailQueue", durable: true, exclusive: false, autoDelete: false);
 
-        string stringBody = $"Order Saved for {Name} with {Total}. at {DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss")}";
-        var body = Encoding.UTF8.GetBytes(stringBody);
-        await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "EmailQueue", body: body);
-        System.Console.WriteLine(stringBody);
+        orderList.ForEach(async (o) =>
+        {
+            var stringBody = JsonSerializer.Serialize(o);
+            var body = Encoding.UTF8.GetBytes(stringBody);
+            await channel.BasicPublishAsync(exchange: string.Empty, routingKey: "EmailQueue", body: body);
+            System.Console.WriteLine(stringBody);
+        });
 
-        return Ok(stringBody);
+
+        return Ok("Orders Created");
     }
 }
