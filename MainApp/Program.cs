@@ -1,2 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+
+
+// System.Console.WriteLine(builder.Configuration.GetSection("RabbitMQ:HostName").Value!.ToString());
+
+var app = builder.Build();
+
+app.MapControllers();
+await app.RunAsync();
