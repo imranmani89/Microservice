@@ -1,6 +1,6 @@
 # MarketApp - Microservices Architecture
 
-A distributed microservices application built with .NET 8.0 that demonstrates a scalable, message-driven architecture for handling orders with Email and SMS notifications.
+A simple distributed microservices application built with .NET 8.0 that demonstrates a scalable, message-driven architecture for handling orders with Email and SMS notifications.
 
 ## 🏗️ Project Architecture
 
